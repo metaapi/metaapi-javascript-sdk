@@ -81,11 +81,11 @@ const accountInformation = await connection.getAccountInformation();
 
 ## More integration examples
 
-- [Browser](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/browser)
-- [Angular](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/angular)
-- [NodeJS](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/node)
-- [React](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/react)
-- [Vue](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/vue)
+- [Browser](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/browser)
+- [Angular](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/angular)
+- [NodeJS](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/node)
+- [React](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/react)
+- [Vue](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/vue)
 
 ## Troubleshooting
 

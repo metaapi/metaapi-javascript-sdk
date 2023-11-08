@@ -132,7 +132,7 @@ Integration examples are located in the [`./angular-app/`](./angular-app/) direc
 Download the MetaApi SDK from GitHub using the following command:
 
 ```bash
-git clone https://github.com/agiliumtrade-ai/metaapi-node.js-sdk.git
+git clone https://github.com/metaapi/metaapi-javascript-sdk.git
 cd metaapi-node.js-sdk/examples/angular/angular-app/
 ```
 

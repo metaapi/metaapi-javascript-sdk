@@ -36,9 +36,9 @@ npm install --save metaapi.cloud-sdk
 
 Examples of integration with : 
 
-1. [Angular](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/ui/angular.md)
-2. [React](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/ui/react.md)
-3. [Vue](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/ui/vue.md)
+1. [Angular](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/ui/angular.md)
+2. [React](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/ui/react.md)
+3. [Vue](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/ui/vue.md)
 
 ## Installing SDK in browser HTML applications
 ```html
@@ -49,7 +49,7 @@ Examples of integration with :
 </script>
 ```
 
-Details of [integration into HTML](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/ui/html.md). 
+Details of [integration into HTML](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/ui/html.md). 
 
 ## Connecting to MetaApi
 Please use one of these ways: 
@@ -66,7 +66,7 @@ const api = new MetaApi(token);
 ```
 
 ## Retrieving account access token
-Account access token grants access to a single account. You can retrieve account access token via [token management API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/tokenManagementApi.md#narrow-down-access-specific-applications-resources-and-roles):
+Account access token grants access to a single account. You can retrieve account access token via [token management API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/tokenManagementApi.md#narrow-down-access-specific-applications-resources-and-roles):
 ```javascript
 const accountId = '...';
 const validityInHours = 24;
@@ -84,26 +84,26 @@ console.log(accountAccessToken);
 Alternatively, you can retrieve account access token via web UI. For that go to https://app.metaapi.cloud/accounts page and choose "Account access token" option in the trading account card actions menu.
 
 ## Table of contents
-1. [MT account management](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/metaApi/managingAccounts.md)
+1. [MT account management](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/metaApi/managingAccounts.md)
 
-2. [MetaApi RPC API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/metaApi/rpcApi.md)
+2. [MetaApi RPC API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/metaApi/rpcApi.md)
 
-3. [MetaApi real-time streaming API (websocket API)](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/metaApi/streamingApi.md)
+3. [MetaApi real-time streaming API (websocket API)](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/metaApi/streamingApi.md)
 
-4. [Risk management API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/riskManagement.md)
+4. [Risk management API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/riskManagement.md)
 
-5. [CopyFactory copy trading API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/copyTrading.md)
+5. [CopyFactory copy trading API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/copyTrading.md)
 
-6. [MetaStats trading statistics API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/metaStats.md)
+6. [MetaStats trading statistics API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/metaStats.md)
 
-7. [MetaApi MT manager API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/managerApi.md)
+7. [MetaApi MT manager API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/managerApi.md)
 
-8. [Tracking latencies](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/trackingLatencies.md)
+8. [Tracking latencies](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/trackingLatencies.md)
 
-9. [Enable log4js logging](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/logging.md)
+9. [Enable log4js logging](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/logging.md)
 
-10. [Rate limits & quotas](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/rateLimits.md)
+10. [Rate limits & quotas](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/rateLimits.md)
 
-11. [Token Management API](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/tokenManagementApi.md)
+11. [Token Management API](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/tokenManagementApi.md)
 
-12. [Intergration for Web UI](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/ui/index.md)
+12. [Intergration for Web UI](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/ui/index.md)

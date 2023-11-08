@@ -40,7 +40,7 @@ Please check this page for FAQ: [https://metaapi.cloud/docs/risk-management/faq/
 ## Code examples
 We published some code examples in our github repository, namely:
 
-- Javascript: [https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/riskManagement](https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/tree/master/examples/riskManagement)
+- Javascript: [https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/riskManagement](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/riskManagement)
 
 ## Configuring equity tracking
 

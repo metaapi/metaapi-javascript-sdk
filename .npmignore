@@ -1,0 +1,13 @@
+.idea
+.vscode
+node_modules
+.DS_Store
+.npmrc
+.nvmrc
+npm-debug.log
+package-lock.json
+.git
+.env
+.metaapi
+test.log
+streamQuotes2.js

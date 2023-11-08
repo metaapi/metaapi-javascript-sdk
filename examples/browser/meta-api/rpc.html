@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RPC Api example</title>
+</head>
+<body>
+<div style="padding: 20px; display: flex; flex-direction: column; width: 200px">
+  <label for="token-input" style="margin-bottom: 5px">Terminal access token</label>
+  <input id="token-input" style="margin-bottom: 10px" type="text">
+  <label for="account-id-input" style="margin-bottom: 5px">Account ID</label>
+  <input id="account-id-input" type="text" style="margin-bottom: 10px">
+  <button onclick="onSubmit()">Connect</button>
+</div>
+<div id='info' style="margin-top: 20px"></div>
+</body>
+<script src="https://unpkg.com/metaapi.cloud-sdk"></script>
+<script>
+  const infoElement = document.getElementById('info');
+  function log() {
+    if(typeof arguments[1] === 'object'){
+      arguments[1] = JSON.stringify(arguments[1]);
+    }
+    const el = document.createElement('div');
+    el.innerHTML = [].join.call(arguments, ' ');
+    infoElement.appendChild(el);
+    console.log(...arguments);
+  }
+  const onSubmit = () => {
+    const token = document.getElementById('token-input').value;
+    const accountId = document.getElementById('account-id-input').value;
+    if (token && accountId) {
+      const api = new MetaApi.default(token);
+      async function testMetaApiSynchronization() {
+        try {
+          const account = await api.metatraderAccountApi.getAccount(accountId);
+
+          log('Waiting for API server to connect to broker (may take couple of minutes)');
+          await account.waitConnected();
+
+          // connect to MetaApi API
+          let connection = account.getRPCConnection();
+          await connection.connect();
+
+          // wait until terminal state synchronized to the local state
+          log('Waiting for SDK to synchronize to terminal state (may take some time depending on your history size)');
+          await connection.waitSynchronized();
+
+          // invoke RPC API (replace ticket numbers with actual ticket numbers which exist in your MT account)
+          log('Testing MetaAPI RPC API');
+          log('account information:', JSON.stringify(await connection.getAccountInformation()));
+          log('positions:', JSON.stringify(await connection.getPositions()));
+          //log(await connection.getPosition('1234567'));
+          log('open orders:', JSON.stringify(await connection.getOrders()));
+          //log(await connection.getOrder('1234567'));
+          log('history orders by ticket:', JSON.stringify(await connection.getHistoryOrdersByTicket('1234567')));
+          log('history orders by position:', JSON.stringify(await connection.getHistoryOrdersByPosition('1234567')));
+          log('history orders (~last 3 months):', JSON.stringify(await connection.getHistoryOrdersByTimeRange(new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), new Date())));
+          log('history deals by ticket:', JSON.stringify(await connection.getDealsByTicket('1234567')));
+          log('history deals by position:', JSON.stringify(await connection.getDealsByPosition('1234567')));
+          log('history deals (~last 3 months):', JSON.stringify(await connection.getDealsByTimeRange(new Date(Date.now() - 90 * 24 * 60 * 60 * 1000), new Date())));
+          log('server time', JSON.stringify(await connection.getServerTime()));
+
+          // calculate margin required for trade
+          log('margin required for trade', JSON.stringify(await connection.calculateMargin({
+            symbol: 'GBPUSD',
+            type: 'ORDER_TYPE_BUY',
+            volume: 0.1,
+            openPrice: 1.1
+          })));
+
+          // trade
+          log('Submitting pending order');
+          try {
+            let result = await connection.createLimitBuyOrder('GBPUSD', 0.07, 1.0, 0.9, 2.0, {
+                comment: 'comm',
+                clientId: 'TE_GBPUSD_7hyINWqAlE'
+              });
+            log('Trade successful, result code is ' + result.stringCode);
+          } catch (err) {
+            log('Trade failed with result code ' + err.stringCode);
+          }
+
+        } catch (err) {
+          log(err);
+        }
+        return;
+      }
+      testMetaApiSynchronization();
+    }
+  }
+</script>
+</html>

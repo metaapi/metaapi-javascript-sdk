@@ -1,0 +1,27 @@
+<app-section>
+  <h1>CopyFactory. Subscriber transaction listener</h1>
+
+  <app-section modifier="form">
+    <h2>Connect to your account</h2>
+
+    <app-form [onSubmit]="submit" [onReset]="reset" [disabled]="fetching || done" [done]="done">
+      <app-field label="Subscriber ID" [(value)]="subscriberAccountId"></app-field>
+      <app-field label="Token" [(value)]="token"></app-field>
+      <app-field label="Domain" [(value)]="domain"></app-field>
+    </app-form>
+  </app-section>
+
+  <app-section *ngIf="!areTokenResourcesNarrowedDown" modifier="warning">
+    <h2>Warning</h2>
+    <p>It seems like you are using a admin API token.</p>
+    <p>Since the token can be retrieven from the browser or mobile apps by end user this can lead to your application being compromised, unless you understand what are you doing.</p>
+    <p>Please use <a href="https://github.com/agiliumtrade-ai/metaapi-node.js-sdk/blob/master/docs/tokenManagementApi.md" target="__blank">Token Management API</a> in your backend application to produce secure tokens which you can then use in web UI or mobile apps.</p>
+  </app-section>
+
+  <app-section *ngIf="logs.length > 0">
+    <h2>Log</h2>
+
+    <app-logger [items]="logs"></app-logger>
+  </app-section>
+
+</app-section>

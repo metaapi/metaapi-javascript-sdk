@@ -1,0 +1,28 @@
+<div class="form">
+  <ng-content></ng-content>
+  
+  <div class="buttons">
+    <button 
+      [class]="'button ' + (disabled ? 'button--disactive' : 'button--active')"
+      (click)="onSubmit? onSubmit() : null"
+      [disabled]="disabled"
+    >
+      {{ disabled 
+        ? (done === undefined 
+          ? 'Connect' 
+          : (done 
+            ? 'Connected' 
+            : 'Connecting...'))
+        : 'Connect' 
+      }}
+    </button>
+
+    <button
+      *ngIf="done && onReset"
+      class="button button--reset"
+      (click)="onReset()"
+    >
+      Clear & Reset
+    </button>
+  </div>
+</div>

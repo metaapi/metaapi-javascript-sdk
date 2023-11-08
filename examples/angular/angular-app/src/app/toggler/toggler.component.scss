@@ -1,0 +1,31 @@
+.toggler {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  align-content: flex-start;
+}
+
+.toggler__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.toggler__list {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  align-content: flex-start;
+}
+
+.toggler__button {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.toggler__button--active {
+  background-color: #ac6b21;
+  color: white;
+}

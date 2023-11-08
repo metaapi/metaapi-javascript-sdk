@@ -1,0 +1,20 @@
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  
+  gap: 10px;
+}
+
+.button {
+  margin-top: 10px;
+  padding: 12px 30px 11px;
+}
+
+.button--active {
+  cursor: pointer;
+}
+
+.button--disactive {
+  cursor: not-allowed;
+}

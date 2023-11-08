@@ -1,0 +1,27 @@
+.field {
+  width: 100%;
+
+  display: grid;
+  grid-template: auto auto / 1fr;
+  justify-items: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.field span {
+  font-size: 1.05em;
+  font-weight: 500;
+  opacity: 0.6;
+}
+
+.field input {
+  width: 250px;
+  padding: 5px 2px 5px 15px;
+  border-radius: 5px;
+}
+
+.field input:disabled {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}

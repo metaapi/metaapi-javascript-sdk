@@ -1,0 +1,9 @@
+<label class="field">
+  <span>{{ label }}</span>
+  <input
+    (change)="onInput($event)"
+    [value]="value"
+    [disabled]="disabled"
+    type="text"
+  />
+</label>

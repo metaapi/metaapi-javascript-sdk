@@ -1,0 +1,14 @@
+#root {
+  width: 100%;
+}
+
+.App {
+  width: 100%;
+  padding: 20px;
+}
+
+.togglers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}

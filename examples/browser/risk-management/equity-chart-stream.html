@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Equity chart stream example</title>
+</head>
+<body>
+<div style="padding: 20px; display: flex; flex-direction: column; width: 200px">
+  <label for="token-input" style="margin-bottom: 5px">Terminal access token</label>
+  <input id="token-input" style="margin-bottom: 10px" type="text">
+  <label for="account-id-input" style="margin-bottom: 5px">Account ID</label>
+  <input id="account-id-input" type="text" style="margin-bottom: 10px">
+  <button onclick="onSubmit()">Connect</button>
+</div>
+<div id='info' style="margin-top: 20px"></div>
+</body>
+<script src="https://unpkg.com/metaapi.cloud-sdk"></script>
+<script>
+  const infoElement = document.getElementById('info');
+  function log() {
+    if(typeof arguments[1] === 'object'){
+      arguments[1] = JSON.stringify(arguments[1]);
+    }
+    const el = document.createElement('div');
+    el.innerHTML = [].join.call(arguments, ' ');
+    infoElement.appendChild(el);
+    console.log(...arguments);
+  }
+
+  const onSubmit = async () => {
+    class ExampleEquityChartListener extends MetaApi.EquityChartListener {
+      async onEquityRecordUpdated(equityChartEvent) {
+        log('equity record updated event received', equityChartEvent);
+      }
+
+      async onEquityRecordCompleted() {
+        log('equity record completed event received');
+      }
+
+      async onConnected() {
+        log('on connected event received');
+      }
+
+      async onDisconnected() {
+        log('on disconnected event received');
+      }
+
+      async onError(error) {
+        log('error event received', error);
+      }
+    }
+
+    const token = document.getElementById('token-input').value;
+    const accountId = document.getElementById('account-id-input').value;
+
+    console.log(accountId)
+
+    if (token && accountId) {
+      try {
+        const riskManagement = new MetaApi.RiskManagement(token);
+        const riskManagementApi = riskManagement.riskManagementApi;
+
+        // adding an equity chart listener
+        let equityChartListener = new ExampleEquityChartListener(accountId);
+        let listenerId = riskManagementApi.addEquityChartListener(equityChartListener, accountId);
+
+        log('Streaming equity chart events for 1 minute...');
+        await new Promise(res => setTimeout(res, 1000 * 60));
+        riskManagementApi.removeEquityChartListener(listenerId);
+
+        let equityChart = await riskManagementApi.getEquityChart(accountId);
+        log('equity chart', JSON.stringify(equityChart));
+      } catch (error) {
+        log(error)
+      }
+    }
+  }
+</script>
+</html>

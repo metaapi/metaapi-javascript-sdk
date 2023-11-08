@@ -1,0 +1,22 @@
+.logs {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+  gap: 10px;
+
+  width: 100%;
+  text-align: left;
+  word-break: break-all; 
+}
+
+.logs__item {
+  border-top: 1px solid #000000;
+}
+
+.log {
+  padding: 10px 20px;
+}
+
+.log:hover {
+  background: gainsboro;
+}

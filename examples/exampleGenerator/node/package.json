@@ -1,0 +1,13 @@
+{
+  "name": "examples",
+  "description": "MetaApi example scripts",
+  "version": "1.0.0",
+  "dependencies": {
+    "metaapi.cloud-sdk": "^25.0.0",
+    "dotenv": "^16.0.3"
+  },
+  "scripts": {
+    "example:rpc": "node -r dotenv/config ./rpcExample.js",
+    "example:synchronization": "node -r dotenv/config ./synchronizationExample.js"
+  }
+}

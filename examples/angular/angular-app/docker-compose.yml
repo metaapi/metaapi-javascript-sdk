@@ -1,0 +1,10 @@
+version: '3'
+services:
+  metaapi-angular-app-example:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    command: ng serve --host 0.0.0.0
+

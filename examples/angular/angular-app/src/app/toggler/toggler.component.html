@@ -1,0 +1,13 @@
+<div class="toggler {{ className }}">
+  <div class="toggler__title">{{ name }}</div>
+
+  <div class="toggler__list">
+    <button *ngFor="let item of items" 
+      (click)="onClickHandler? onClickHandler(item) : null"
+      class="toggler__button"
+      [class.toggler__button--active]="activeItem === item"
+    >
+      {{ item }}
+    </button>
+  </div>
+</div>

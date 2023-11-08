@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Period statistics stream example</title>
+</head>
+<body>
+<div style="padding: 20px; display: flex; flex-direction: column; width: 200px">
+
+  <label for="tracker-name-input" style="margin-bottom: 5px">Tracker name</label>
+  <input id="tracker-name-input" style="margin-bottom: 10px" type="text">
+
+  <label for="token-input" style="margin-bottom: 5px">Terminal access token</label>
+  <input id="token-input" style="margin-bottom: 10px" type="text">
+
+  <label for="account-id-input" style="margin-bottom: 5px">Account ID</label>
+  <input id="account-id-input" type="text" style="margin-bottom: 10px">
+
+  <button onclick="onSubmit()">Connect</button>
+
+</div>
+<div id='info' style="margin-top: 20px"></div>
+</body>
+<script src="https://unpkg.com/metaapi.cloud-sdk"></script>
+<script>
+  const infoElement = document.getElementById('info');
+  function log() {
+    if(typeof arguments[1] === 'object'){
+      arguments[1] = JSON.stringify(arguments[1]);
+    }
+    const el = document.createElement('div');
+    el.innerHTML = [].join.call(arguments, ' ');
+    infoElement.appendChild(el);
+    console.log(...arguments);
+  }
+
+  const onSubmit = async () => {
+    class ExamplePeriodStatisticsListener extends MetaApi.PeriodStatisticsListener {
+      async onPeriodStatisticsUpdated(periodStatisticsEvent) {
+        log('period statistics updated', periodStatisticsEvent);
+      }
+
+      async onPeriodStatisticsCompleted() {
+        log('period completed event received');
+      }
+
+      async onTrackerCompleted(){
+        log('tracker completed event received');
+      }
+
+      async onConnected() {
+        log('on connected event received');
+      }
+
+      async onDisconnected() {
+        log('on disconnected event received');
+      }
+
+      async onError(error) {
+        log('error event received', error);
+      }
+    }
+
+    const trackerName = document.getElementById('tracker-name-input').value;
+    const accountId = document.getElementById('account-id-input').value;
+    const token = document.getElementById('token-input').value;
+    
+    if (token && accountId && trackerName) {
+      try {
+        const riskManagement = new MetaApi.RiskManagement(token);
+        const riskManagementApi = riskManagement.riskManagementApi;
+
+        /* creating a tracker */
+        const trackerId = await riskManagementApi.createTracker(accountId, {
+          absoluteDrawdownThreshold: 5,
+          name: trackerName,
+          period: 'day'
+        });
+        log('Created an event tracker ' + trackerId.id);
+
+        /* adding an period statistics listener */
+        const periodStatisticsListener = new ExamplePeriodStatisticsListener(accountId, trackerId);
+        const listenerId = riskManagementApi.addPeriodStatisticsListener(periodStatisticsListener, accountId, trackerId.id);
+
+        log('Streaming period statistics events for 1 minute...');
+        await new Promise(res => setTimeout(res, 1000 * 60));
+        riskManagementApi.removePeriodStatisticsListener(listenerId);
+
+        const equityChart = await riskManagementApi.getEquityChart(accountId);
+        log('period statistics', JSON.stringify(equityChart));
+
+        await riskManagementApi.deleteTracker(accountId, trackerId.id);
+        log('Removed the tracker');
+      } catch (error) {
+        log(error)
+      }
+    }
+  }
+</script>
+</html>

@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "metaapi.cloud-sdk": "^25.0.0",
+    "metaapi.cloud-sdk": "^27.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

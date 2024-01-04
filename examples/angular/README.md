@@ -85,7 +85,7 @@ Inject service into your component and use it:
 ``` javascript
 // app.component.ts
 import { Component } from '@angular/core';
-import { MetaApiService } from 'metaapi.service';
+import { MetaapiService } from 'metaapi.service';
 import { MetatraderAccountInformation } from 'metaapi.cloud-sdk';
 
 @Component({
@@ -99,7 +99,7 @@ import { MetatraderAccountInformation } from 'metaapi.cloud-sdk';
 export class AppComponent {
   accountInfo?: MetatraderAccountInformatipon;
 
-  constructor(private metaApiService: MetaApiService) {
+  constructor(private metaApiService: MetaapiService) {
     this.fetchData();
   }
 
@@ -118,14 +118,14 @@ export class AppComponent {
 
 ## Examples
 
-Integration examples are located in the [`./angular-app/`](./angular-app/) directory.
+Integration examples are located in the [`./app/`](app/) directory.
 
-- Historical Market Data: [src/app/historical/](./angular-app/src/app/historical)
-- RiskManagement: [src/app/risk-management/](./angular-app/src/app/risk-management)
-- Stream Quotes: [src/app/stream-quotes](./angular-app/src/app/stream-quotes)
-- CopyFactory: [src/app/copy-factory/](./angular-app/src/app/copy-factory)
-- MetaStats: [src/app/meta-stats/](./angular-app/src/app/meta-stats)
-- MetaApi: [src/app/meta-api/](./angular-app/src/app/meta-api)
+- Historical Market Data: [src/app/historical/](app/src/app/historical)
+- RiskManagement: [src/app/riskManagement/](app/src/app/riskManagement)
+- Stream Quotes: [src/app/streamQuotes](app/src/app/streamQuotes)
+- CopyFactory: [src/app/copyfactory/](app/src/app/copyfactory)
+- MetaStats: [src/app/metastats/](app/src/app/metastats)
+- MetaApi: [src/app/metaapi/](app/src/app/metaapi)
 
 ### Installation and Running
 
@@ -133,7 +133,7 @@ Download the MetaApi SDK from GitHub using the following command:
 
 ```bash
 git clone https://github.com/metaapi/metaapi-javascript-sdk.git
-cd metaapi-node.js-sdk/examples/angular/angular-app/
+cd metaapi-node.js-sdk/examples/angular/app/
 ```
 
 #### Runnig manually
@@ -149,8 +149,8 @@ npm start
 Use `docker`:
 
 ```bash
-docker build -t metaapi-angular-app-example -f Dockerfile .
-docker run -d -p 4200:4200 metaapi-angular-app-example
+docker build -t metaapi-app-example -f Dockerfile .
+docker run -d -p 4200:4200 metaapi-app-example
 # runned at localhost:4200
 ```
 

@@ -97,8 +97,8 @@ const accountInformation = await connection.getAccountInformation();
 
 Integration examples are located in the [`examples/browser`](../../examples/browser) directory.
 
-- RiskManagement: [risk-management/](../../examples/browser/risk-management)
-- MetaApi: [meta-api/](../../examples/browser/meta-api)
+- RiskManagement: [riskManagement/](../../examples/browser/riskManagement)
+- MetaApi: [metaapi/](../../examples/browser/metaapi)
 
 ## Troubleshooting
 

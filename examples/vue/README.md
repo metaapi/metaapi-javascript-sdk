@@ -102,14 +102,14 @@ async function fetchData() {
 
 ## Examples
 
-Integration examples are located in the [`./vue-app/`](./vue-app/) directory.
+Integration examples are located in the [`./app/`](app/) directory.
 
-- Historical Market Data: [src/components/historical/](./vue-app/src/components/historical)
-- RiskManagement: [src/components/risk-management/](./vue-app/src/components/risk-management)
-- Stream Quotes: [src/components/stream-quotes](./vue-app/src/components/stream-quotes)
-- CopyFactory: [src/components/copy-factory/](./vue-app/src/components/copy-factory)
-- MetaStats: [src/components/meta-stats/](./vue-app/src/components/meta-stats)
-- MetaApi: [src/components/meta-api/](./vue-app/src/components/meta-api)
+- Historical Market Data: [src/components/historical/](app/src/components/historical)
+- RiskManagement: [src/components/riskManagement/](app/src/components/riskManagement)
+- Stream Quotes: [src/components/streamQuotes](app/src/components/streamQuotes)
+- CopyFactory: [src/components/copyfactory/](app/src/components/copyfactory)
+- MetaStats: [src/components/metastats/](app/src/components/metastats)
+- MetaApi: [src/components/metaapi/](app/src/components/metaapi)
 
 ### Prerequisites of examples
 
@@ -122,7 +122,7 @@ Download the MetaApi SDK from GitHub using the following command:
 
 ```bash
 git clone https://github.com/metaapi/metaapi-javascript-sdk.git
-cd metaapi-node.js-sdk/examples/vue/vue-app/
+cd metaapi-node.js-sdk/examples/vue/app/
 ```
 
 #### Runnig manually
@@ -138,8 +138,8 @@ npm run dev
 Use `docker`:
 
 ```bash
-docker build -t metaapi-vue-app-example -f Dockerfile .
-docker run -d -p 5173:5173 metaapi-vue-app-example
+docker build -t metaapi-app-example -f Dockerfile .
+docker run -d -p 5173:5173 metaapi-app-example
 #  runned at localhost:5173
 ```
 

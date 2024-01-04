@@ -108,14 +108,14 @@ async function fetchData() {
 
 ## Examples
 
-Integration examples are located in the [`examples/vue/vue-app/`](../../examples/vue/vue-app/) directory.
+Integration examples are located in the [`examples/vue/app/`](../../examples/vue/app/) directory.
 
-- Historical Market Data: [src/components/historical/](../../examples/vue/vue-app/src/components/historical)
-- RiskManagement: [src/components/risk-management/](../../examples/vue/vue-app/src/components/risk-management)
-- Stream Quotes: [src/components/stream-quotes](../../examples/vue/vue-app/src/components/stream-quotes)
-- CopyFactory: [src/components/copy-factory/](../../examples/vue/vue-app/src/components/copy-factory)
-- MetaStats: [src/components/meta-stats/](../../examples/vue/vue-app/src/components/meta-stats)
-- MetaApi: [src/components/meta-api/](../../examples/vue/vue-app/src/components/meta-api)
+- Historical Market Data: [src/components/historical/](../../examples/vue/app/src/components/historical)
+- RiskManagement: [src/components/riskManagement/](../../examples/vue/app/src/components/riskManagement)
+- Stream Quotes: [src/components/streamQuotes](../../examples/vue/app/src/components/streamQuotes)
+- CopyFactory: [src/components/copyfactory/](../../examples/vue/app/src/components/copyfactory)
+- MetaStats: [src/components/metastats/](../../examples/vue/app/src/components/metastats)
+- MetaApi: [src/components/metaapi/](../../examples/vue/app/src/components/metaapi)
 
 ### Prerequisites of examples
 
@@ -128,7 +128,7 @@ Download the MetaApi SDK from GitHub using the following command:
 
 ```bash
 git clone https://github.com/metaapi/metaapi-javascript-sdk.git
-cd metaapi-node.js-sdk/examples/vue/vue-app/
+cd metaapi-node.js-sdk/examples/vue/app/
 ```
 
 #### Runnig manually
@@ -144,8 +144,8 @@ npm run dev
 Use `docker`:
 
 ```bash
-docker build -t metaapi-vue-app-example -f Dockerfile .
-docker run -d -p 5173:5173 metaapi-vue-app-example
+docker build -t metaapi-app-example -f Dockerfile .
+docker run -d -p 5173:5173 metaapi-app-example
 #  runned at localhost:5173
 ```
 

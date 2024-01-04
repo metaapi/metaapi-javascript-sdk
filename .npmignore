@@ -11,3 +11,7 @@ package-lock.json
 .metaapi
 test.log
 streamQuotes2.js
+#lib
+swc
+development.md
+.gitlab-ci.yml

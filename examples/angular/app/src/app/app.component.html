@@ -1,0 +1,143 @@
+<div class="App">
+  <h1>MetaApi + Angular</h1>
+
+  <div class="togglers">
+    <app-toggler *ngFor="let example of examples; let i = index"
+      [className]="'togglers__item'"
+      [items]="example.items"
+      [name]="example.name"
+      [activeItem]="activeExample$ | async"
+      [onClickHandler]="setActiveExample">
+    </app-toggler>
+  </div>
+
+  <div class="component">
+    <ng-container [ngSwitch]="activeExample$ | async">
+      <metaapi-rpc *ngSwitchCase="'metaapi.rpc'"
+        [accountId]="accountId"
+        [domain]="domain"
+        [token]="token">
+      </metaapi-rpc>
+
+      <metaapi-stream *ngSwitchCase="'metaapi.stream'"
+        [accountId]="accountId"
+        [domain]="domain"
+        [token]="token">
+      </metaapi-stream>
+
+      <streamQuotes *ngSwitchCase="'streamQuotes'"
+        [accountId]="accountId"
+        [symbol]="symbol"
+        [domain]="domain"
+        [token]="token">
+      </streamQuotes>
+
+      <historical-getCandles *ngSwitchCase="'historical.getCandles'"
+        [token]="token"
+        [accountId]="accountId"
+        [symbol]="symbol"
+        [domain]="domain">
+      </historical-getCandles>
+
+      <historical-getTicks *ngSwitchCase="'historical.getTicks'"
+        [token]="token"
+        [accountId]="accountId"
+        [symbol]="symbol"
+        [domain]="domain">
+      </historical-getTicks>
+
+      <riskManagement-periodStatisticsStream *ngSwitchCase="'riskManagement.periodStatisticsStream'"
+        [accountId]="accountId"
+        [domain]="domain"
+        [token]="token">
+      </riskManagement-periodStatisticsStream>
+
+      <riskManagement-equityChartStream *ngSwitchCase="'riskManagement.equityChartStream'"
+        [accountId]="accountId"
+        [domain]="domain"
+        [token]="token">
+      </riskManagement-equityChartStream>
+
+      <riskManagement-equlityBalance *ngSwitchCase="'riskManagement.equlityBalance'"
+        [accountId]="accountId"
+        [domain]="domain"
+        [token]="token">
+      </riskManagement-equlityBalance>
+
+      <riskManagement-equityTracking *ngSwitchCase="'riskManagement.equityTracking'"
+        [accountId]="accountId"
+        [domain]="domain"
+        [token]="token">
+      </riskManagement-equityTracking>
+
+      <metastats-getOpenTrades *ngSwitchCase="'metastats.getOpenTrades'"
+        [token]="token"
+        [accountId]="accountId"
+        [domain]="domain">
+      </metastats-getOpenTrades>
+
+      <metastats-getTrades *ngSwitchCase="'metastats.getTrades'"
+        [token]="token"
+        [accountId]="accountId"
+        [domain]="domain">
+      </metastats-getTrades>
+
+      <metastats-getMetrics *ngSwitchCase="'metastats.getMetrics'"
+        [token]="token"
+        [accountId]="accountId"
+        [domain]="domain">
+      </metastats-getMetrics>
+
+      <copyfactory-externalSignal *ngSwitchCase="'copyfactory.externalSignal'"
+        [providerAccountId]="providerAccountId"
+        [subscriberAccountId]="subscriberAccountId"
+        [token]="token"
+        [domain]="domain">
+      </copyfactory-externalSignal>
+
+      <copyfactory-stopoutListener *ngSwitchCase="'copyfactory.stopoutListener'"
+        [token]="token"
+        [domain]="domain">
+      </copyfactory-stopoutListener>
+
+      <copyfactory-copyTrade *ngSwitchCase="'copyfactory.copyTrade'"
+        [token]="token"
+        [providerAccountId]="providerAccountId"
+        [subscriberAccountId]="subscriberAccountId"
+        [domain]="domain">
+      </copyfactory-copyTrade>
+
+      <copyfactory-strategyTransactionListener *ngSwitchCase="'copyfactory.strategyTransactionListener'"
+        [token]="token"
+        [strategyId]="strategyId"
+        [domain]="domain">
+      </copyfactory-strategyTransactionListener>
+
+      <copyfactory-strategyUserLogListener *ngSwitchCase="'copyfactory.strategyUserLogListener'"
+        [token]="token"
+        [strategyId]="strategyId"
+        [domain]="domain">
+      </copyfactory-strategyUserLogListener>
+
+      <copyfactory-subscriberTransactionListener *ngSwitchCase="'copyfactory.subscriberTransactionListener'"
+        [token]="token"
+        [subscriberAccountId]="subscriberAccountId"
+        [domain]="domain">
+      </copyfactory-subscriberTransactionListener>
+
+      <copyfactory-subscriberUserLogListener *ngSwitchCase="'copyfactory.subscriberUserLogListener'"
+        [token]="token"
+        [subscriberAccountId]="subscriberAccountId"
+        [domain]="domain">
+      </copyfactory-subscriberUserLogListener>
+
+      <copyfactory-telegram *ngSwitchCase="'copyfactory.telegram'"
+        [token]="token"
+        [domain]="domain"
+        [botToken]="botToken"
+        [chatId]="chatId"
+        [providerAccountId]="providerAccountId">
+      </copyfactory-telegram>
+    </ng-container>
+  </div>
+</div>

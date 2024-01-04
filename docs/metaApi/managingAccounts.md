@@ -285,7 +285,7 @@ const provisioningProfiles = await api.provisioningProfileApi.getProvisioningPro
 
 // get profiles without filter (returns 1000 profiles max)
 const provisioningProfiles = await api.provisioningProfileApi.getProvisioningProfilesWithInfiniteScrollPagination()
-const provisioningProfiles = provisioningProfiles.find(profile => profile.id === 'profileId')
+const provisioningProfile = provisioningProfiles.find(profile => profile.id === 'profileId')
 ```
 
 Method `getProvisioningProfilesWithClassicPagination` provides pagination in a classic style which allows you to calculate page count.

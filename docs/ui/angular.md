@@ -91,7 +91,7 @@ Inject service into your component and use it:
 ``` javascript
 // app.component.ts
 import { Component } from '@angular/core';
-import { MetaApiService } from 'metaapi.service';
+import { MetaapiService } from 'metaapi.service';
 import { MetatraderAccountInformation } from 'metaapi.cloud-sdk';
 
 @Component({
@@ -105,7 +105,7 @@ import { MetatraderAccountInformation } from 'metaapi.cloud-sdk';
 export class AppComponent {
   accountInfo?: MetatraderAccountInformatipon;
 
-  constructor(private metaApiService: MetaApiService) {
+  constructor(private metaApiService: MetaapiService) {
     this.fetchData();
   }
 
@@ -124,14 +124,14 @@ export class AppComponent {
 
 ## Examples
 
-Integration examples are located in the [`examples/angular/angular-app/`](../../examples/angular/angular-app/) directory.
+Integration examples are located in the [`examples/angular/app/`](../../examples/angular/app/) directory.
 
-- Historical Market Data: [src/app/historical/](../../examples/angular/angular-app/src/app/historical)
-- RiskManagement: [src/app/risk-management/](../../examples/angular/angular-app/src/app/risk-management)
-- Stream Quotes: [src/app/stream-quotes](../../examples/angular/angular-app/src/app/stream-quotes)
-- CopyFactory: [src/app/copy-factory/](../../examples/angular/angular-app/src/app/copy-factory)
-- MetaStats: [src/app/meta-stats/](../../examples/angular/angular-app/src/app/meta-stats)
-- MetaApi: [src/app/meta-api/](../../examples/angular/angular-app/src/app/meta-api)
+- Historical Market Data: [src/app/historical/](../../examples/angular/app/src/app/historical)
+- RiskManagement: [src/app/riskManagement/](../../examples/angular/app/src/app/riskManagement)
+- Stream Quotes: [src/app/streamQuotes](../../examples/angular/app/src/app/streamQuotes)
+- CopyFactory: [src/app/copyfactory/](../../examples/angular/app/src/app/copyfactory)
+- MetaStats: [src/app/metastats/](../../examples/angular/app/src/app/metastats)
+- MetaApi: [src/app/metaapi/](../../examples/angular/app/src/app/metaapi)
 
 ### Installation and Running
 
@@ -139,7 +139,7 @@ Download the MetaApi SDK from GitHub using the following command:
 
 ```bash
 git clone https://github.com/metaapi/metaapi-javascript-sdk.git
-cd metaapi-node.js-sdk/examples/angular/angular-app/
+cd metaapi-node.js-sdk/examples/angular/app/
 ```
 
 #### Runnig manually
@@ -155,8 +155,8 @@ npm start
 Use `docker`:
 
 ```bash
-docker build -t metaapi-angular-app-example -f Dockerfile .
-docker run -d -p 4200:4200 metaapi-angular-app-example
+docker build -t metaapi-app-example -f Dockerfile .
+docker run -d -p 4200:4200 metaapi-app-example
 # runned at localhost:4200
 ```
 

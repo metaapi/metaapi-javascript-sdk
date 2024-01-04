@@ -152,14 +152,14 @@ export default MyComponent;
 
 ## Examples
 
-Integration examples are located in the [`examples/react/react-app/`](../../examples/react/react-app/) directory.
+Integration examples are located in the [`examples/react/app/`](../../examples/react/app/) directory.
 
-- Historical Market Data: [src/components/historical/](../../examples/react/react-app/src/components/historical)
-- RiskManagement: [src/components/risk-management/](../../examples/react/react-app/src/components/risk-management)
-- Stream Quotes: [src/components/stream-quotes](../../examples/react/react-app/src/components/stream-quotes)
-- CopyFactory: [src/components/copy-factory/](../../examples/react/react-app/src/components/copy-factory)
-- MetaStats: [src/components/meta-stats/](../../examples/react/react-app/src/components/meta-stats)
-- MetaApi: [src/components/meta-api/](../../examples/react/react-app/src/components/meta-api)
+- Historical Market Data: [src/components/historical/](../../examples/react/app/src/components/historical)
+- RiskManagement: [src/components/riskManagement/](../../examples/react/app/src/components/riskManagement)
+- Stream Quotes: [src/components/streamQuotes](../../examples/react/app/src/components/streamQuotes)
+- CopyFactory: [src/components/copyfactory/](../../examples/react/app/src/components/copyfactory)
+- MetaStats: [src/components/metastats/](../../examples/react/app/src/components/metastats)
+- MetaApi: [src/components/metaapi/](../../examples/react/app/src/components/metaapi)
 
 ### Prerequisites of examples
 
@@ -172,7 +172,7 @@ Download the MetaApi SDK from GitHub using the following command:
 
 ```bash
 git clone https://github.com/metaapi/metaapi-javascript-sdk.git
-cd metaapi-node.js-sdk/examples/react/react-app/
+cd metaapi-node.js-sdk/examples/react/app/
 ```
 
 #### Runnig manually
@@ -188,8 +188,8 @@ npm run dev
 Use `docker`:
 
 ```bash
-docker build -t metaapi-react-app-example -f Dockerfile .
-docker run -d -p 5173:5173 metaapi-react-app-example
+docker build -t metaapi-app-example -f Dockerfile .
+docker run -d -p 5173:5173 metaapi-app-example
 # runned at localhost:5173
 ```
 

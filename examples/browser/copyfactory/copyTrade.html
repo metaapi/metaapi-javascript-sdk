@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Copy trade example</title>
+</head>
+<body>
+<div style="padding: 20px; display: flex; flex-direction: column; width: 200px">
+    <label for="token-input" style="margin-bottom: 5px">Terminal access token</label>
+    <input id="token-input" style="margin-bottom: 10px" type="text">
+    <label for="provider-account-id-input" style="margin-bottom: 5px">Provider account ID</label>
+    <input id="provider-account-id-input" type="text" style="margin-bottom: 10px">
+    <label for="subscriber-account-id-input" style="margin-bottom: 5px">Subscriber account ID</label>
+    <input id="subscriber-account-id-input" type="text" style="margin-bottom: 10px">
+    <button id="connect-button" onclick="onSubmit()">Connect</button>
+</div>
+<div id='info' style="margin-top: 20px"></div>
+</body>
+<script src="https://unpkg.com/metaapi.cloud-sdk"></script>
+<script>
+    const infoElement = document.getElementById('info');
+    function log() {
+        if(typeof arguments[1] === 'object'){
+            arguments[1] = JSON.stringify(arguments[1]);
+        }
+
+        const el = document.createElement('div');
+        el.innerHTML = [].join.call(arguments, ' ');
+        infoElement.appendChild(el);
+        console.log(...arguments);
+    }
+
+    const buttonElement = document.getElementById('connect-button')
+    const onSubmit = async () => {
+        buttonElement.disabled = true;
+        const token = document.getElementById('token-input').value;
+        const providerAccountId = document.getElementById('provider-account-id-input').value;
+        const subscriberAccountId = document.getElementById('subscriber-account-id-input').value;
+
+        if (token && providerAccountId && subscriberAccountId) {
+            const api = new MetaApi.default(token);
+            const copyFactory = new MetaApi.CopyFactory(token);
+
+            async function configureCopyFactory() {
+                try {
+                    let providerMetaapiAccount = await api.metatraderAccountApi.getAccount(providerAccountId);
+                    if(!providerMetaapiAccount.copyFactoryRoles || !providerMetaapiAccount.copyFactoryRoles.includes('PROVIDER')) {
+                        throw new Error('Please specify PROVIDER copyFactoryRoles value in your MetaApi account in ' +
+                            'order to use it in CopyFactory API');
+                    }
+
+                    let subscriberMetaapiAccount = await api.metatraderAccountApi.getAccount(subscriberAccountId);
+                    if(!subscriberMetaapiAccount.copyFactoryRoles || !subscriberMetaapiAccount.copyFactoryRoles.includes('SUBSCRIBER')) {
+                        throw new Error('Please specify SUBSCRIBER copyFactoryRoles value in your MetaApi account in ' +
+                            'order to use it in CopyFactory API');
+                    }
+
+                    let configurationApi = copyFactory.configurationApi;
+                    const strategies = await configurationApi.getStrategiesWithInfiniteScrollPagination();
+                    const strategy = strategies.find(s => s.accountId === providerMetaapiAccount.id);
+                    let strategyId;
+                    if(strategy) {
+                        strategyId = strategy._id;
+                    } else {
+                        strategyId = await configurationApi.generateStrategyId();
+                        strategyId = strategyId.id;
+                    }
+
+                    // create a strategy being copied
+                    await configurationApi.updateStrategy(strategyId, {
+                        name: 'Test strategy',
+                        description: 'Some useful description about your strategy',
+                        accountId: providerMetaapiAccount.id
+                    });
+
+                    // create subscriber
+                    await configurationApi.updateSubscriber(subscriberMetaapiAccount.id, {
+                        name: 'Test subscriber',
+                        subscriptions: [
+                            {
+                                strategyId: strategyId,
+                                multiplier: 1
+                            }
+                        ]
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+
+            await configureCopyFactory();
+        }
+        buttonElement.disabled = false;
+    }
+</script>
+</html>

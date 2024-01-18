@@ -28,7 +28,7 @@ async function externalSignal() {
     }
 
     let configurationApi = copyFactory.configurationApi;
-    const strategies = await configurationApi.getStrategies();
+    const strategies = await configurationApi.getStrategiesWithInfiniteScrollPagination();
     const strategy = strategies.find(s => s.accountId === providerMetaapiAccount.id);
     let strategyId;
     if(strategy) {

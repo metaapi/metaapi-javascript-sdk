@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Metastats example</title>
+</head>
+<body>
+<div style="padding: 20px; display: flex; flex-direction: column; width: 200px">
+    <label for="token-input" style="margin-bottom: 5px">Terminal access token</label>
+    <input id="token-input" style="margin-bottom: 10px" type="text">
+    <label for="account-id-input" style="margin-bottom: 5px">Account ID</label>
+    <input id="account-id-input" type="text" style="margin-bottom: 10px">
+    <button id="connect-button" onclick="onSubmit()">Connect</button>
+</div>
+<div id='info' style="margin-top: 20px"></div>
+</body>
+<script src="https://unpkg.com/metaapi.cloud-sdk"></script>
+<script>
+    const infoElement = document.getElementById('info');
+    function log() {
+        if(typeof arguments[1] === 'object'){
+            arguments[1] = JSON.stringify(arguments[1]);
+        }
+
+        const el = document.createElement('div');
+        el.innerHTML = [].join.call(arguments, ' ');
+        infoElement.appendChild(el);
+        console.log(...arguments);
+    }
+
+    const buttonElement = document.getElementById('connect-button')
+    const onSubmit = async () => {
+        buttonElement.disabled = true;
+        const token = document.getElementById('token-input').value;
+        const accountId = document.getElementById('account-id-input').value;
+
+        if (token && accountId) {
+            const api = new MetaApi.default(token);
+            const metaStats = new MetaApi.MetaStats(token);
+            // you can configure http client via second parameter,
+            // see esdoc in-code documentation for full definition of possible configuration options
+
+
+            async function accountDeploy() {
+                try {
+                    const account = await api.metatraderAccountApi.getAccount(accountId);
+
+                    // wait until account is deployed and connected to broker
+                    log('Deploying account');
+                    if (account.state !== 'DEPLOYED') {
+                        await account.deploy();
+                    } else {
+                        log('Account already deployed');
+                    }
+                    log('Waiting for API server to connect to broker (may take couple of minutes)');
+                    if (account.connectionStatus !== 'CONNECTED') {
+                        await account.waitConnected();
+                    }
+
+                } catch (err) {
+                    log(err);
+                }
+            }
+
+            accountDeploy();
+
+            async function getAccountMetrics() {
+                try {
+                    let metrics = await metaStats.getMetrics(accountId);
+                    log(metrics);//-> {trades: ..., balance: ..., ...}
+
+                } catch (err) {
+                    log(err);
+                }
+            }
+
+            async function getAccountTrades(startTime, endTime) {
+                try {
+                    let trades = await metaStats.getAccountTrades(accountId, startTime, endTime);
+                    log(trades.slice(-5));//-> {_id: ..., gain: ..., ...}
+
+                } catch (err) {
+                    log(err);
+                }
+            }
+
+            async function getAccountOpenTrades() {
+                try {
+                    let openTrades = await metaStats.getAccountOpenTrades(accountId);
+                    log(openTrades);//-> {_id: ..., gain: ..., ...}
+
+                } catch (err) {
+                    log(err);
+                }
+            }
+
+            await Promise.all([
+                getAccountMetrics(),
+                getAccountTrades('2020-01-01 00:00:00.000', '2021-01-01 00:00:00.000'),
+                getAccountOpenTrades(),
+            ])
+        }
+        buttonElement.disabled = false;
+    }
+</script>
+</html>

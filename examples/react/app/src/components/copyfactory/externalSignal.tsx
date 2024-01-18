@@ -89,7 +89,7 @@ export function CopyfactoryExternalSignal({
       
       const configurationApi = copyFactory.configurationApi;
       
-      const strategies = await configurationApi.getStrategies();
+      const strategies = await configurationApi.getStrategiesWithInfiniteScrollPagination();
       const strategy = strategies.find((s) => s.accountId === providerMetaapiAccount.id);
       
       const strategyId = !strategy

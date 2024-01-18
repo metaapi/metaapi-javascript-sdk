@@ -1,5 +1,9 @@
+27.0.3
+  - add browser examples for Metastats and Copyfactory
+  - update docs links
+
 27.0.2
-- update MetaStats SDK and CopyFactory SDK versions
+  - update MetaStats SDK and CopyFactory SDK versions
 
 27.0.1
   - breaking change: change modules naming method

@@ -40,7 +40,11 @@ Please check this page for FAQ: [https://metaapi.cloud/docs/risk-management/faq/
 ## Code examples
 We published some code examples in our github repository, namely:
 
-- Javascript: [https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/riskManagement](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/riskManagement)
+- [Node.JS](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/node/riskManagement)
+- [Browser](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/browser/riskManagement)
+- [Angular](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/angular/app/src/app/riskManagement)
+- [React](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/react/app/src/components/riskManagement)
+- [Vue](https://github.com/metaapi/metaapi-javascript-sdk/tree/master/examples/vue/app/src/components/riskManagement)
 
 ## Configuring equity tracking
 

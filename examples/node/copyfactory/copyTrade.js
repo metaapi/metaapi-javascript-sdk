@@ -9,7 +9,6 @@ const providerAccountId = process.env.PROVIDER_ACCOUNT_ID || '<put in your provi
 // your subscriber MetaApi account id
 // subscriber account must have SUBSCRIBER value in copyFactoryRoles
 const subscriberAccountId = process.env.SUBSCRIBER_ACCOUNT_ID || '<put in your subscriberAccountId here>';
-const domain = process.env.DOMAIN || 'agiliumtrade.agiliumtrade.ai';
 
 const api = new MetaApi(token);
 const copyFactory = new CopyFactory(token);
@@ -29,7 +28,7 @@ async function configureCopyFactory() {
     }
 
     let configurationApi = copyFactory.configurationApi;
-    const strategies = await configurationApi.getStrategies();
+    const strategies = await configurationApi.getStrategiesWithInfiniteScrollPagination();
     const strategy = strategies.find(s => s.accountId === providerMetaapiAccount.id);
     let strategyId;
     if(strategy) {

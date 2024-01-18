@@ -97,12 +97,12 @@ export class CopyfactoryService {
         throw new Error('No configurationApi');
       }
 
-      const strategies = await this.configurationApi.getStrategies();
+      const strategies = await this.configurationApi.getStrategiesWithInfiniteScrollPagination();
       const strategy = strategies.find((s) => s.accountId === this.connectionProvider!.id);
 
-      const strategyId = !strategy
-        ? (await this.configurationApi.generateStrategyId()).id
-        : strategy._id;
+      const strategyId = strategy
+        ? strategy._id
+        : (await this.configurationApi.generateStrategyId()).id;
 
       return strategyId;
     } catch (err) {
@@ -111,7 +111,7 @@ export class CopyfactoryService {
     }
   }
 
-  createStrategy = async (strategyId: string, options?: {} = {}): Promise<void> => {
+  createStrategy = async (strategyId: string, options: {} = {}): Promise<void> => {
     try {
       this.log('Creating strategy');
       await this.configurationApi!.updateStrategy(strategyId, {

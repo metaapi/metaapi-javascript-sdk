@@ -64,7 +64,7 @@ const makeRequest = async () => {
 
     log('Provider account received');
   
-    const strategies = await configurationApi.getStrategies();
+    const strategies = await configurationApi.getStrategiesWithInfiniteScrollPagination();
     const strategy = strategies.find((s) => s.accountId === providerMetaapiAccount.id);
     
     const strategyId = !strategy

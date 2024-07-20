@@ -1,3 +1,6 @@
+27.1.0
+  - added dedicated IPs support
+
 27.0.3
   - add browser examples for Metastats and Copyfactory
   - update docs links

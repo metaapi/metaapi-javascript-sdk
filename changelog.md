@@ -1,3 +1,6 @@
+27.1.1
+  - removed excessive logging errors about subscriptions and synchronization
+
 27.1.0
   - added dedicated IPs support
 

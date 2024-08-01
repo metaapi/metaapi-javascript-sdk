@@ -1,3 +1,6 @@
+27.1.2
+  - fixed `modifyPosition` parameter docs and types
+
 27.1.1
   - removed excessive logging errors about subscriptions and synchronization
 

@@ -1,3 +1,6 @@
+27.2.0
+  - add support for native Node ES modules
+
 27.1.2
   - fixed `modifyPosition` parameter docs and types
 

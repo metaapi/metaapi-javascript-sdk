@@ -51,6 +51,14 @@ Examples of integration with :
 
 Details of [integration into HTML](https://github.com/metaapi/metaapi-javascript-sdk/blob/master/docs/ui/html.md). 
 
+## Using SDK within native [Node ECMAScript modules](https://nodejs.org/docs/latest-v20.x/api/esm.html#modules-ecmascript-modules)
+```js
+import MetaApi from 'metaapi.cloud-sdk/esm-node';
+
+const token = '...';
+const api = new MetaApi(token);
+```
+
 ## Connecting to MetaApi
 Please use one of these ways: 
 1. [https://app.metaapi.cloud/api-access/generate-token](https://app.metaapi.cloud/api-access/generate-token) web UI to obtain your API token.

@@ -1,3 +1,8 @@
+28.0.0
+  - breaking change: removed support for Node.js < v18.x.x
+  - add resource slots error docs
+  - upd `E_SRV_NOT_FOUND` error handling in examples
+
 27.2.0
   - add support for native Node ES modules
 

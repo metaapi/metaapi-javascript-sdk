@@ -9,7 +9,7 @@ const serverName = process.env.SERVER || '<put in your MT server name here>';
 
 const api = new MetaApi(token);
 
-// eslint-disable-next-line max-statements
+// eslint-disable-next-line max-statements, complexity
 async function testMetaApiSynchronization() {
   try {
     // Add test MetaTrader account
@@ -101,7 +101,7 @@ async function testMetaApiSynchronization() {
     if(err.details) {
       // returned if the server file for the specified server name has not been found
       // recommended to check the server name or create the account using a provisioning profile
-      if(err.details === 'E_SRV_NOT_FOUND') {
+      if(err.details.code === 'E_SRV_NOT_FOUND') {
         console.error(err);
       // returned if the server has failed to connect to the broker using your credentials
       // recommended to check your login and password
@@ -110,6 +110,9 @@ async function testMetaApiSynchronization() {
       // returned if the server has failed to detect the broker settings
       // recommended to try again later or create the account using a provisioning profile
       } else if (err.details === 'E_SERVER_TIMEZONE') {
+        console.log(err);
+      // returned if provided resource slots amount is lower than estimated for the account
+      } else if (err.details.code === 'E_RESOURCE_SLOTS') {
         console.log(err);
       }
     }

@@ -33,7 +33,7 @@ try {
   if(err.details) {
     // returned if the server file for the specified server name has not been found
     // recommended to check the server name or create the account using a provisioning profile
-    if(err.details === 'E_SRV_NOT_FOUND') {
+    if(err.details.code === 'E_SRV_NOT_FOUND') {
       console.error(err);
     // returned if the server has failed to connect to the broker using your credentials
     // recommended to check your login and password
@@ -42,6 +42,9 @@ try {
     // returned if the server has failed to detect the broker settings
     // recommended to try again later or create the account using a provisioning profile
     } else if (err.details === 'E_SERVER_TIMEZONE') {
+      console.log(err);
+    // returned if provided resource slots amount is lower than estimated for the account
+    } else if (err.details.code === 'E_RESOURCE_SLOTS') {
       console.log(err);
     }
   }
@@ -62,18 +65,28 @@ Several types of errors are possible during the request:
 - Server file not found
 - Authentication error
 - Settings detection error
+- Resource slots error
 
 ##### Server file not found
-This error is returned if the server file for the specified server name has not been found. In case of this error it
-is recommended to check the server name. If the issue persists, it is recommended to create the account using a
-provisioning profile.
+This error is returned if the server file for the specified server name has not been found. In case of this error it is recommended to check the server name.
+If the issue persists, it is recommended to create the account using a provisioning profile. Error also includes existing server names that are similar to provided one.
 
+Example:
 ```json
 {
   "id": 3,
   "error": "ValidationError",
-  "message": "We were unable to retrieve the server file for this broker. Please check the server name or configure the provisioning profile manually.",
-  "details": "E_SRV_NOT_FOUND"
+  "message": ".dat file for server ICMarkets-Demo not found, please check the server name or use a provisioning profile instead. Suggested server names: 
+  ICMarketsSC-Demo, ICMarketsSC-MT5.",
+  "details": {
+    "code": "E_SRV_NOT_FOUND",
+    "serversByBrokers": {
+      "Raw Trading Ltd": [
+        "ICMarketsSC-Demo",
+        "ICMarketsSC-MT5"
+      ]
+    }
+  }
 }
 ```
 
@@ -100,6 +113,22 @@ to retry the request later, or create the account using a provisioning profile.
   "error": "ValidationError",
   "message": "We were not able to retrieve server settings using credentials provided. Please try again later or configure the provisioning profile manually.",
   "details": "E_SERVER_TIMEZONE"
+}
+```
+
+##### Resource slots error
+Depending on your broker and trading account some trading accounts might require extra resource slots to be executed successfully in the cloud. If your trading account requires extra resource slots then you will receive a E_RESOURCE_SLOTS error in response. You will then need to re-submit your request with updated resource slots value in order for your trading account to be added to MetaApi cloud.
+
+Example:
+```json
+{
+  "id": 3,
+  "error": "ValidationError",
+  "message": "Account resource slots should be equal or above estimated",
+  "details": {
+    "code": "E_RESOURCE_SLOTS",
+    "recommendedResourceSlots": 2
+  }
 }
 ```
 

@@ -1,19 +1,18 @@
-let MetaApi = require('metaapi.cloud-sdk').default;
-let CopyFactory = require('metaapi.cloud-sdk').CopyFactory;
+import MetaApi, {CopyFactory} from 'metaapi.cloud-sdk/esm-node';
 
 // your MetaApi API token
-let token = process.env.TOKEN || '<put in your token here>';
+const token = process.env.TOKEN || '<put in your token here>';
 // your provider MetaApi account id
 // provider account must have PROVIDER value in copyFactoryRoles
-let providerAccountId = process.env.PROVIDER_ACCOUNT_ID || '<put in your providerAccountId here>';
+const providerAccountId = process.env.PROVIDER_ACCOUNT_ID || '<put in your providerAccountId here>';
 // your subscriber MetaApi account id
 // subscriber account must have SUBSCRIBER value in copyFactoryRoles
-let subscriberAccountId = process.env.SUBSCRIBER_ACCOUNT_ID || '<put in your subscriberAccountId here>';
+const subscriberAccountId = process.env.SUBSCRIBER_ACCOUNT_ID || '<put in your subscriberAccountId here>';
 
 const api = new MetaApi(token);
 const copyFactory = new CopyFactory(token);
 
-async function externalSignal() {
+async function configureCopyFactory() {
   try {
     let providerMetaapiAccount = await api.metatraderAccountApi.getAccount(providerAccountId);
     if(!providerMetaapiAccount.copyFactoryRoles || !providerMetaapiAccount.copyFactoryRoles.includes('PROVIDER')) {
@@ -55,35 +54,10 @@ async function externalSignal() {
         }
       ]
     });
-
-    // send external signal
-    const tradingApi = copyFactory.tradingApi;
-    const subscriberSignalClient = await tradingApi.getSubscriberSignalClient(subscriberAccountId);
-    const strategySignalClient = await tradingApi.getStrategySignalClient(strategyId);
-    const signalId = strategySignalClient.generateSignalId();
-    await strategySignalClient.updateExternalSignal(signalId, {
-      symbol: 'EURUSD',
-      type: 'POSITION_TYPE_BUY',
-      time: new Date(),
-      volume: 0.01
-    });
-
-    await new Promise(res => setTimeout(res, 10000));
-
-    // output strategy external signals
-    console.log(await strategySignalClient.getExternalSignals());
-
-    // output trading signals
-    console.log(await subscriberSignalClient.getTradingSignals());
-
-    // remove external signal
-    await strategySignalClient.removeExternalSignal(signalId, {
-      time: new Date()
-    });
   } catch (err) {
     console.error(err);
   }
   process.exit();
 }
 
-externalSignal();
+configureCopyFactory();

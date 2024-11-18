@@ -32,6 +32,6 @@
   "dependencies": {
     "dotenv": "^16.0.3",
     "form-data": "^4.0.0",
-    "metaapi.cloud-sdk": "^27.0.1"
+    "metaapi.cloud-sdk": "^29.0.0"
   }
 }

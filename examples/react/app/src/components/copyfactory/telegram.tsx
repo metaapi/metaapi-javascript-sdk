@@ -128,9 +128,9 @@ export function CopyfactoryTelegram({
         
         /* Send external signal */
         log('Sending external signal');
-        const signalClient = await tradingApi.getSignalClient(providerMetaapiAccount.id);
-        const signalId = signalClient.generateSignalId();
-        await signalClient.updateExternalSignal(strategyId, signalId, {
+        const strategySignalClient = await tradingApi.getStrategySignalClient(strategyId);
+        const signalId = strategySignalClient.generateSignalId();
+        await strategySignalClient.updateExternalSignal(signalId, {
           symbol: 'EURUSD',
           type: 'POSITION_TYPE_BUY',
           time: new Date(),
@@ -144,7 +144,7 @@ export function CopyfactoryTelegram({
 
         /* Remove external signal */
         log('Removing external signal');
-        await signalClient.removeExternalSignal(strategyId, signalId, {
+        await strategySignalClient.removeExternalSignal(signalId, {
           time: new Date()
         });
         log('External signal removed');

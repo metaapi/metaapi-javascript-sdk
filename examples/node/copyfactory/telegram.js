@@ -54,9 +54,9 @@ async function telegram() {
 
     // send external signal
     const tradingApi = copyFactory.tradingApi;
-    const signalClient = await tradingApi.getSignalClient(providerMetaapiAccount.id);
-    const signalId = signalClient.generateSignalId();
-    await signalClient.updateExternalSignal(strategyId, signalId, {
+    const strategySignalClient = await tradingApi.getStrategySignalClient(strategyId);
+    const signalId = strategySignalClient.generateSignalId();
+    await strategySignalClient.updateExternalSignal(signalId, {
       symbol: 'EURUSD',
       type: 'POSITION_TYPE_BUY',
       time: new Date(),
@@ -66,7 +66,7 @@ async function telegram() {
     await new Promise(res => setTimeout(res, 5000));
 
     // remove external signal
-    await signalClient.removeExternalSignal(strategyId, signalId, {
+    await strategySignalClient.removeExternalSignal(signalId, {
       time: new Date()
     });
   } catch (err) {

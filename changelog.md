@@ -1,3 +1,11 @@
+29.0.0
+  - breaking change: split signal client interface for Copyfactory SDK into strategy and subscriber signal clients
+
+28.0.1
+  - fixed `createStopLimitBuyOrder` and `createStopLimitSellOrder` type signatures
+  - fixed `NewMetatraderAccountDto.baseCurrency` type
+  - fix - defined `ModifyOrderOptions.stopLimitPrice` option type
+
 28.0.0
   - breaking change: removed support for Node.js < v18.x.x
   - add resource slots error docs

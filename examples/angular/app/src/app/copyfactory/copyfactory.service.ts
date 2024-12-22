@@ -6,6 +6,7 @@ import MetaApi, {
 } from 'metaapi.cloud-sdk';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -64,7 +65,7 @@ export class CopyfactoryService {
         );
       }
 
-      this.connectionProvider= providerMetaapiAccount;
+      this.connectionProvider = providerMetaapiAccount;
     } catch (err) {
       this.log(err);
       throw err;
@@ -348,6 +349,53 @@ export class CopyfactoryService {
         time: new Date()
       });
       this.log('External signal removed');
+    } catch (err) {
+      this.log(err);
+      throw err;
+    }
+  }
+
+  webhooks = async(strategyId: string) => {
+    try {
+      this.log('Creating a webhook');
+      let webhook = await this.configurationApi!.createWebhook(strategyId, {
+        symbolMapping: [{from: 'EURUSD.m', to: 'EURUSD'}],
+        magic: 100
+      });
+      this.log('Created webhook', webhook);
+
+      this.log('Updating webhook');
+      await this.configurationApi!.updateWebhook(strategyId, webhook.id, {
+        symbolMapping: [
+          {from: 'EURUSD.m', to: 'EURUSD'},
+          {from: 'BTCUSD.m', to: 'BTCUSD'}
+        ],
+        magic: 100
+      });
+
+      this.log('Retrieving webhooks with infinite scroll pagination');
+      let webhooks1 = await this.configurationApi!.getWebhooksWithInfiniteScrollPagination(strategyId);
+      this.log('Retrieved webhooks', webhooks1);
+
+      this.log('Retrieving webhooks with classic pagination');
+      let webhooks2 = await this.configurationApi!.getWebhooksWithClassicPagination(strategyId);
+      this.log('Retrieved webhooks', webhooks2);
+
+      this.log('Sending a trading signal to the webhook. Curl command:');
+      let payload = {
+        symbol: 'EURUSD',
+        type: 'POSITION_TYPE_BUY',
+        time: new Date().toISOString(),
+        volume: 0.1
+      };
+      this.log(`curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '${
+        JSON.stringify(payload)
+      }' '${webhook.url}'`);
+      let response = await axios.post(webhook.url, payload);
+      this.log('Sent the signal, signal ID: ' + response.data.signalId);
+
+      this.log('Deleting webhook ' + webhook.id);
+      await this.configurationApi!.deleteWebhook(strategyId, webhook.id);
     } catch (err) {
       this.log(err);
       throw err;

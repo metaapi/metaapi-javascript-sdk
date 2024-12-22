@@ -1,3 +1,6 @@
+29.0.1
+  - added copyfactory webhook example code
+
 29.0.0
   - breaking change: split signal client interface for Copyfactory SDK into strategy and subscriber signal clients
 

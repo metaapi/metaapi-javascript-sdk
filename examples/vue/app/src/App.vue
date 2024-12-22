@@ -28,6 +28,7 @@ import {
   CopyFactoryExternalSignal,
   CopyFactoryCopyTrade,
   CopyFactoryTelegram,
+  CopyFactoryWebhooks
 } from '@/components';
 
 interface IExample {
@@ -63,7 +64,8 @@ const examples: IExample[] = [
       'copyfactory.strategyUserLogListener',
       'copyfactory.subscriberTransactionListener',
       'copyfactory.subscriberUserLogListener',
-      'copyfactory.telegram'
+      'copyfactory.telegram',
+      'copyfactory.webhooks'
     ]
   }, {
     name: 'Meta Stats',
@@ -196,6 +198,9 @@ const setActiveExample = (example: string) => {
         :defaultProviderAccountId="providerAccountId" 
         :defaultBotToken="botToken" :defaultChatId="chatId"
         :defaultToken="token" :defaultDomain="domain"
+      />
+      <CopyFactoryWebhooks v-if="activeExample === 'copyfactory.webhooks'"
+        :defaultProviderAccountId="providerAccountId" :defaultToken="token" :defaultDomain="domain"
       />
       
       <StreamQuotes v-if="activeExample === 'streamQuotes'"

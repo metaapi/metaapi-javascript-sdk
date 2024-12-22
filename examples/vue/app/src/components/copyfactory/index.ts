@@ -6,6 +6,7 @@ import CopyFactoryStopoutListener from './stopoutListener.vue';
 import CopyFactoryExternalSignal from './externalSignal.vue';
 import CopyFactoryCopyTrade from './copyTrade.vue';
 import CopyFactoryTelegram from './telegram.vue';
+import CopyFactoryWebhooks from './webhooks.vue';
 
 export {
   CopyFactorySubscriberTransactionListener,
@@ -16,4 +17,5 @@ export {
   CopyFactoryExternalSignal,
   CopyFactoryCopyTrade,
   CopyFactoryTelegram,
+  CopyFactoryWebhooks
 }

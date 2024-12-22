@@ -46,7 +46,8 @@ export class AppComponent {
         'copyfactory.strategyUserLogListener',
         'copyfactory.subscriberTransactionListener',
         'copyfactory.subscriberUserLogListener',
-        'copyfactory.telegram'
+        'copyfactory.telegram',
+        'copyfactory.webhooks'
       ]
     }, {
       name: 'Meta Stats',

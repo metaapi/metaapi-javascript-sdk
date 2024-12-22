@@ -20,6 +20,7 @@ import {
   CopyfactorySubscriberTransactionListener,
   CopyfactorySubscriberUserLogListener,
   CopyfactoryTelegram,
+  CopyfactoryWebhooks,
   MetastatsGetOpenTrades,
   MetastatsGetTrades,
   MetastatsGetMetrics,
@@ -61,7 +62,8 @@ const examples: IExample[] = [
       'copyfactory.strategyUserLogListener',
       'copyfactory.subscriberTransactionListener',
       'copyfactory.subscriberUserLogListener',
-      'copyfactory.telegram'
+      'copyfactory.telegram',
+      'copyfactory.webhooks'
     ]
   }, {
     name: 'Meta Stats',
@@ -140,6 +142,8 @@ function App() {
           <CopyfactorySubscriberUserLogListener {...{ token, subscriberAccountId, domain }} /> }
         { (activeExample === 'copyfactory.telegram') &&
           <CopyfactoryTelegram {...{ token, domain, botToken, chatId, providerAccountId }} /> }
+        { (activeExample === 'copyfactory.webhooks') &&
+          <CopyfactoryWebhooks {...{ token, domain, providerAccountId }} /> }
 
         { (activeExample === 'metastats.getOpenTrades') &&
           <MetastatsGetOpenTrades {...{ token, accountId, domain }} /> }

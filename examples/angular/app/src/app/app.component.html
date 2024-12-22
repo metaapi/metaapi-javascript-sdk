@@ -138,6 +138,12 @@
         [chatId]="chatId"
         [providerAccountId]="providerAccountId">
       </copyfactory-telegram>
+
+      <copyfactory-webhooks *ngSwitchCase="'copyfactory.webhooks'"
+        [token]="token"
+        [providerAccountId]="providerAccountId"
+        [domain]="domain">
+      </copyfactory-webhooks>
     </ng-container>
   </div>
 </div>

@@ -29,6 +29,7 @@ import {
   CopyfactoryExternalSignalComponent,
   CopyfactoryCopyTradeComponent,
   CopyfactoryTelegramComponent,
+  CopyfactoryWebhooksComponent
 } from './copyfactory';
 
 import {
@@ -78,6 +79,7 @@ import { StreamQuotesComponent } from './streamQuotes';
     CopyfactoryExternalSignalComponent,
     CopyfactoryCopyTradeComponent,
     CopyfactoryTelegramComponent,
+    CopyfactoryWebhooksComponent,
 
     /* Stream Quotes */
     StreamQuotesComponent

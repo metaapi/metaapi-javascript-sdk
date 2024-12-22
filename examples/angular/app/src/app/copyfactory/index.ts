@@ -6,3 +6,4 @@ export * from './stopoutListener/stopoutListener.component';
 export * from './externalSignal/externalSignal.component';
 export * from './copyTrade/copyTrade.component';
 export * from './telegram/telegram.component';
+export * from './webhooks/webhooks.component';

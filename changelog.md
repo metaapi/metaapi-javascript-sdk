@@ -1,3 +1,6 @@
+29.0.2
+  - added swap rates to specification model
+
 29.0.1
   - added copyfactory webhook example code
 

@@ -4,7 +4,7 @@ MetaApi is a powerful, fast, cost-efficient, easy to use and standards-driven cl
 
 CopyFactory is a simple yet powerful copy-trading API which is a part of MetaApi. See below for CopyFactory readme section.
 
-MetaApi is a paid service, however we offer a free tier for testing and personal use.
+MetaApi is a paid service, however we may offer a free tier access in some cases.
 
 The [MetaApi pricing](https://metaapi.cloud/#pricing) was developed with the intent to make your charges less or equal to what you would have to pay
 for hosting your own infrastructure. This is possible because over time we managed to heavily optimize

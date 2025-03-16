@@ -1,3 +1,13 @@
+29.0.3
+  - fixed `comment` and `clientId` descriptions
+  - fixed `MetatraderSymbolSpecification.fillingModes` field name and description
+  - fixed `MetatraderSymbolSpecification.hedgedMargin` to be optional
+  - fixed `MetatraderSymbolSpecification.orderGTCMode` to be optional
+  - fixed `MetatraderAccountInformation.accountCurrencyExchangeRate` updates in `TerminalState`
+  - fixed `MetatraderTick.side` to be optional
+  - improved risk management tracking period docs
+  - added pending order expiration examples and docs
+
 29.0.2
   - added swap rates to specification model
 

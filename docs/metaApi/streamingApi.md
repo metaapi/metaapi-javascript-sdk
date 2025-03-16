@@ -177,6 +177,38 @@ console.log(await connection.createMarketBuyOrder('GBPUSD', 0.07, 0.9, 2.0, {
 }));
 ```
 
+#### Order expiration
+Order expiration is a trade option that allows you to automatically cancel old pending orders. By default orders have the expiration type `ORDER_TIME_GTC`, which means they won't be canceled until the user's request. `ORDER_TIME_DAY` means the order will be canceled at the end of the current trade day; `ORDER_TIME_SPECIFIED` means the order will be canceled at a specified time; `ORDER_TIME_SPECIFIED_DAY` means the order will be canceled at the end of the specified trade day. MetaTrader 4 supports only `ORDER_TIME_GTC` and `ORDER_TIME_SPECIFIED`. You can find the full description here: 
+[https://metaapi.cloud/docs/client/restApi/api/trade/#pending-order-expiration-settings](https://metaapi.cloud/docs/client/restApi/api/trade/#pending-order-expiration-settings)
+
+```javascript
+// without specified options, ORDER_TIME_GTC is applied
+console.log(await connection.createLimitBuyOrder('GBPUSD', 0.07, 1.0, 0.9, 2.0));
+
+// specified expiration time
+console.log(await connection.createLimitBuyOrder('GBPUSD', 0.07, 1.0, 0.9, 2.0, {
+  expiration: {
+    type: 'ORDER_TIME_SPECIFIED',
+    time: new Date(Date.now() + 24 * 60 * 60 * 1000)
+  }
+}));
+
+// specified expiration date
+console.log(await connection.createLimitBuyOrder('GBPUSD', 0.07, 1.0, 0.9, 2.0, {
+  expiration: {
+    type: 'ORDER_TIME_SPECIFIED_DAY',
+    time: new Date(Date.now() + 24 * 60 * 60 * 1000)
+  }
+}));
+
+// expires at the end of the current day
+console.log(await connection.createLimitBuyOrder('GBPUSD', 0.07, 1.0, 0.9, 2.0, {
+  expiration: {
+    type: 'ORDER_TIME_DAY'
+  }
+}));
+```
+
 ### Monitoring account connection health and uptime
 You can monitor account connection health using MetaApiConnection.healthMonitor API.
 ```javascript

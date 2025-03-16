@@ -75,7 +75,11 @@ async function testMetaApiSynchronization() {
       const result = await
       connection.createLimitBuyOrder('GBPUSD', 0.07, 1.0, 0.9, 2.0, {
         comment: 'comm',
-        clientId: 'TE_GBPUSD_7hyINWqAlE'
+        clientId: 'TE_GBPUSD_7hyINWqAlE',
+        expiration: {
+          type: 'ORDER_TIME_SPECIFIED',
+          time: new Date(Date.now() + 24 * 60 * 60 * 1000)
+        }
       });
       console.log('Trade successful, result code is ' + result.stringCode);
     } catch (err) {

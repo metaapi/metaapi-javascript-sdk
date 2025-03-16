@@ -106,7 +106,11 @@ export class MetaapiService {
           'GBPUSD', 0.07, 1.0, 0.9, 2.0,
           {
             clientId: 'TE_GBPUSD_7hyINWqAlE',
-            comment: 'comm'
+            comment: 'comm',
+            expiration: {
+              type: 'ORDER_TIME_SPECIFIED',
+              time: new Date(Date.now() + 24 * 60 * 60 * 1000)
+            }
           }
         );
 
@@ -187,7 +191,11 @@ export class MetaapiService {
           'GBPUSD', 0.07, 1.0, 0.9, 2.0,
           {
             clientId: 'TE_GBPUSD_7hyINWqAlE',
-            comment: 'comm'
+            comment: 'comm',
+            expiration: {
+              type: 'ORDER_TIME_SPECIFIED',
+              time: new Date(Date.now() + 24 * 60 * 60 * 1000)
+            }
           }
         );
 

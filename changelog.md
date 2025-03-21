@@ -1,3 +1,7 @@
+29.0.4
+  - fix `MetatraderAccount.baseCurrency` type
+  - fix unreleased internal interval on `TerminalState.close`
+
 29.0.3
   - fixed `comment` and `clientId` descriptions
   - fixed `MetatraderSymbolSpecification.fillingModes` field name and description

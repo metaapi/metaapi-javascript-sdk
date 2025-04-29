@@ -1,3 +1,8 @@
+29.0.5
+  - improved trailing stop loss docs
+  - fixed closing account connections when the account is removed or undeployed
+  - fixed deduplication of history orders in memory history storage
+
 29.0.4
   - fix `MetatraderAccount.baseCurrency` type
   - fix unreleased internal interval on `TerminalState.close`

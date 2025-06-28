@@ -223,6 +223,14 @@ await account.update({
 });
 ```
 
+### Enabling copy factory API for account
+```javascript
+await account.enableCopyFactoryApi({
+  copyFactoryRoles: ['PROVIDER']
+  copyFactoryResourceSlots: 1
+});
+```
+
 ### Removing an account
 ```javascript
 await account.remove();

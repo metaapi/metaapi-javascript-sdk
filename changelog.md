@@ -1,3 +1,6 @@
+29.1.0
+  - added `enableCopyFactoryApi` method for metatrader account
+
 29.0.5
   - improved trailing stop loss docs
   - fixed closing account connections when the account is removed or undeployed

@@ -1,3 +1,12 @@
+29.1.3
+  - add binary-search-tree license file
+
+29.1.2
+  - removed 'binary-search-tree' dependency
+
+29.1.1
+  - use `recommendedRetryTime` response metadata field as fallback for 202 status in the HTTP client
+
 29.1.0
   - added `enableCopyFactoryApi` method for metatrader account
 

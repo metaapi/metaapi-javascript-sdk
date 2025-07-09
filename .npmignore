@@ -9,6 +9,7 @@ package-lock.json
 .git
 .env
 .metaapi
+.temp
 test.log
 streamQuotes2.js
 #lib

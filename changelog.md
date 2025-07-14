@@ -1,3 +1,6 @@
+29.2.0
+  - add `ProvisioningProfile.type` getter
+
 29.1.3
   - add binary-search-tree license file
 

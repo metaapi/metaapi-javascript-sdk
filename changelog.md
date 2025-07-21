@@ -1,3 +1,7 @@
+29.3.0
+  - add `AccountInformation.currencyDigits` field
+  - improve internal logging
+
 29.2.0
   - add `ProvisioningProfile.type` getter
 

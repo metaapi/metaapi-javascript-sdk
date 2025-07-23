@@ -1,3 +1,6 @@
+29.3.1
+  - fix logging
+
 29.3.0
   - add `AccountInformation.currencyDigits` field
   - improve internal logging

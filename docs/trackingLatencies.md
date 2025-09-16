@@ -1,5 +1,5 @@
 ## Tracking latencies
-You can track latencies uring MetaApi.latencyMonitor API. Client-side latencies include network communication delays, thus the lowest client-side latencies are achieved if you host your app in AWS Ohio region.
+You can track latencies during MetaApi.latencyMonitor API. Client-side latencies include network communication delays, thus the lowest client-side latencies are achieved if you host your app in AWS Ohio region.
 ```javascript
 let api = new MetaApi('token', {enableLatencyMonitor: true});
 let monitor = api.latencyMonitor;

@@ -1,3 +1,6 @@
+29.3.2
+  - fix error names in minified code
+
 29.3.1
   - fix logging
 

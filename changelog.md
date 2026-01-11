@@ -1,3 +1,6 @@
+29.3.3
+  - restore streaming state without resynchronizations when socket quickly reconnects
+
 29.3.2
   - fix error names in minified code
 

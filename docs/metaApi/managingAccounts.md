@@ -372,10 +372,10 @@ const demoAccount = await api.metatraderAccountGeneratorApi.createMT4DemoAccount
   accountType: 'type',
   email: 'example@example.com',
   leverage: 100,
-  serverName: 'Exness-Trial4',
+  serverName: 'Example-Server',
   name: 'Test User',
   phone: '+12345678901',
-  keywords: ["Exness Technologies Ltd"]
+  keywords: ["Example Broker Ltd"]
 });
 
 // optionally specify a provisioning profile id if servers file is not found by server name
@@ -384,7 +384,7 @@ const demoAccount = await api.metatraderAccountGeneratorApi.createMT4DemoAccount
   accountType: 'type',
   email: 'example@example.com',
   leverage: 100,
-  serverName: 'Exness-Trial4',
+  serverName: 'Example-Server',
   name: 'Test User',
   phone: '+12345678901'
 }, provisioningProfile.id);
